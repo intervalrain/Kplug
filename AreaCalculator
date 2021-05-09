@@ -1,0 +1,54 @@
+# $autorun
+
+import pya
+
+def objAreaCal():
+    view = pya.Application.instance().main_window().current_view()
+    if view is None:
+        pya.MessageBox.info("Alarm", "No view selected", pya.MessageBox.Ok)
+    total_area = 0.0
+    objs = view.object_selection
+    for i in range(0, len(objs)):
+        shape = objs[i].shape
+        layout = view.cellview(objs[i].cv_index).layout()
+        if shape.is_polygon() or shape.is_box() or shape_is_path():
+            polygon = shape.polygon
+            a = polygon.area()
+            m = objs[i].trans().mag * layout.dbu
+            total_area += a * m * m
+    pya.MessageBox.info("Hint", "Total Object Area: " + str(total_area) + " (um.square)", pya.MessageBox.Ok)
+
+def regAreaCal():
+    view = pya.Application.instance().main_window().current_view()
+    if view is None:
+        pya.MessageBox.info("Alarm", "No view selected", pya.MessageBox.Ok)
+    objs = view.object_selection
+    region = pya.Region()
+    for i in range(0, len(objs)):
+        shape = objs[i].shape
+        layout = view.cellview(objs[i].cv_index).layout()
+        m = objs[0].trans().mag * layout.dbu
+        if shape.is_polygon() or shape.is_box() or shape_is_path():
+            region += objs[i].trans() * shape.polygon
+            total_area = region.area() * m * m
+    pya.MessageBox.info("Hint", "Total Region Area: " + str(total_area) + "(um.square)", pya.MessageBox.Ok)
+
+menu = pya.Application.instance().main_window().menu()
+    
+action_objAreaCal = pya.Action()
+action_objAreaCal.title = "ObjAreaCal"
+action_objAreaCal.on_triggered(objAreaCal)
+
+action_regAreaCal = pya.Action()
+action_regAreaCal.title = "RegAreaCal"
+action_regAreaCal.on_triggered(regAreaCal)
+
+menu.insert_separator("@toolbar.end", "AreaCal")
+
+menu.insert_item("@toolbar.end", "objAreaCal", action_objAreaCal)
+menu.insert_item("@toolbar.end", "regAreaCal", action_regAreaCal)
+
+
+
+
+
