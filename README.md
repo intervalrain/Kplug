@@ -21,6 +21,7 @@ A simple macro for KLayout
 + Ver. 1.01 first version for area calculate function.
 + Ver. 1.02 separate "object calculate" and "region calculate".
 + Ver. 1.03 update "loadlyp" function.
++ Ver. 1.04 update "PerimeterCal", "DensityCal" and "ExportCoordinate", and set default.csv in the /pymacros as the default lyp.
 
 # Reference
 KLayout's Author: [Matthias Köfferlein](https://github.com/klayoutmatthias)
