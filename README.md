@@ -4,11 +4,18 @@ A simple macro for KLayout
 # Manual
 ## Tool Bar
 ![toolbar](/images/toolbar.png)
-+ objAreaCal
-  + Calculate the area with all objects. (overlapped area is also calculated)
-+ regAreaCal
-  + Initiate format from different machines. (overlapped area is ignored)
++ AreaCal
+  + Calculate the area with the selected layers. (overlapped area won't be summed up)
++ PerimeterCal
+  + Calculate the perimeter length with the selected layers. (overlapped area won't be summed up)
++ DensityCal
+  + Calculate the density with only two selected layers. 
+
++ ExportCoordinates
+  + Export [85,0] database coordinates with top_cell, x_coordinate, y_coordinate, and rotation.
+
 + loadLyp
+  + Load "default.csv" in ./pymacros directory.
   + Load self-define Layer Mapping and Data Type's naming with *.csv
 
 # Copyright 
