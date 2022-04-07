@@ -67,7 +67,7 @@ def densityCal():
         return
 
     # check the numbers of layers selected are exactly 2
-    objs = view.objects_selection
+    objs = view.object_selection
     layer_set = set();
     for i in range(len(objs)):
         layer_set.add(objs[i].layer)
@@ -89,7 +89,7 @@ def densityCal():
     reg_dummy = reg_back & reg_frnt
     reg_areaToCnt = reg_back if reg_back.area() > reg_dummy.area() else reg_frnt
 
-    pya.MessageBox("Hint", "Density of selected area: " + format(reg_dummy.area()/reg_areaToCnt.area(), ".3%"), pya.MessageBox.Ok)
+    pya.MessageBox.info("Hint", "Density of selected area: " + format(reg_dummy.area()/reg_areaToCnt.area(), ".3%"), pya.MessageBox.Ok)
 
 def exportCoordinate():
     file_path = pya.FileDialog.ask_save_file_name("Save coordinate file as ...", "", "*.csv")
@@ -100,7 +100,7 @@ def exportCoordinate():
     # umc default gds number for text is [85, 0]
     input = ly.find_layer(85, 0)
     if input is None:
-        pya.MessageBox("Alarm", "85/0 not found", pya.MessageBox.Ok)
+        pya.MessageBox.info("Alarm", "85/0 not found", pya.MessageBox.Ok)
         return
     
     si = ly.begin_shapes(ly.top_cell(), input)
