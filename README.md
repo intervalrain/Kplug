@@ -2,13 +2,7 @@
 A simple macro for KLayout
 
 # Installation
-+ Select any option you like
-1. Directly download the file
-  + Download the file and put it into ./klayout/pymacros
-2. change directory to ./klayout/pymacros and hit
-```shell
-clone git@github.com:intervalrain/Kplug.git
-```
++ Directly download the file and put it into ./klayout/pymacros
 
 # Manual
 ## Tool Bar
